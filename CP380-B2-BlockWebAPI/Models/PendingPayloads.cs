@@ -14,5 +14,10 @@ namespace CP380_B2_BlockWebAPI.Models
         {
             payloads = new List<Payload>() { };
         }
+        public void removePendingPayloads() //remove pending payload
+        {
+            payloads.Clear();
+        }
     }
+  
 }

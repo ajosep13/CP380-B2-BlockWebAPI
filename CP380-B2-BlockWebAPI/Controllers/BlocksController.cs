@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CP380_B2_BlockWebAPI.Models;
 using CP380_B1_BlockList.Models;
+using CP380_B2_BlockWebAPI.Services;
 
 namespace CP380_B2_BlockWebAPI.Controllers
 {
@@ -70,6 +71,19 @@ namespace CP380_B2_BlockWebAPI.Controllers
                 return (result.Select(block => block.Data)
                               .First()
                               .ToList());
+            }
+        }
+       //Assignment Part D
+        [HttpPost]
+        public void PostBlock(Block block)
+        {
+            if (block.Hash == _list.Chain[_list.Chain.Count - 1].PreviousHash)
+            {
+                _list.Chain.Add(block);
+            }
+            else
+            {
+                BadRequest();
             }
         }
     }
